@@ -1,0 +1,46 @@
+<nav class="bg-rose-900 shadow-md px-4 py-3 flex items-center justify-between">
+  <!-- Logo / Brand + Image -->
+  <div class="flex items-center space-x-2">
+    <img
+      src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+      alt="Food Icon"
+      class="w-10 h-10 ml-3 mr-3 rounded-full object-cover"
+    />
+    <span class="ml-2 text-xl text-white font-bold">{{"BRAND"|translate}}</span>
+  </div>
+  
+    <!-- Nav Links -->
+    <div class="flex items-center space-x-4">
+      <a routerLink="/home" class="text-white hover:text-blue-600 transition">{{"HOME"|translate}}</a>
+      <a routerLink="/about" class="text-white hover:text-blue-600 transition">{{"ABOUT"|translate}}</a>
+      <a routerLink="/recipes" class="text-white hover:text-blue-600 transition">{{"RECIPES"|translate}}</a>
+<a routerLink="/add-recipe" class="text-white hover:text-blue-600 transition">{{"ADD_RECIPE"|translate}}</a>
+
+       
+      
+  
+     <!-- Language Dropdown -->
+<div class="relative group">
+  <button
+    class="flex items-center gap-1 px-3 py-1.5 border rounded-lg text-sm text-violet-100 hover:bg-white "
+  >
+    🌐 {{ "LANGUAGE" | translate }}
+  </button>
+  <div
+    class="absolute right-0 mt-1 hidden group-hover:block bg-white border rounded-lg shadow-lg z-10"
+  >
+    <a href="#" (click)="changeLanguage('en')" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+      {{ "ENGLISH" | translate }}
+    </a>
+    <a href="#" (click)="changeLanguage('ur')" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+      {{ "URDU" | translate }}
+    </a>
+    <a href="#" (click)="changeLanguage('es')" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+      {{ "SPANISH" | translate }}
+    </a>
+  </div>
+</div>
+
+    </div>
+  </nav>
+  

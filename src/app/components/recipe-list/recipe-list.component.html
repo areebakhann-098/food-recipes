@@ -1,0 +1,66 @@
+<h1 class="text-4xl font-bold text-center mb-6 text-gray-800">All Recipes</h1>
+
+<!-- Search Input -->
+<div class="mb-4 flex justify-center">
+  <div class="relative w-full max-w-md">
+    <input
+      type="text"
+      [(ngModel)]="searchQuery"
+      (ngModelChange)="filterRecipes()"
+      placeholder="Search by title or description"
+      class="w-full py-2 pl-10 pr-4 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+    <svg
+      class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-500"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M10 18a8 8 0 100-16 8 8 0 000 16zm6.293-6.293a9.953 9.953 0 001.707-5.707A10 10 0 1110 20a9.953 9.953 0 005.707-1.707l4.586 4.586a1 1 0 001.414-1.414l-4.586-4.586z"
+      />
+    </svg>
+  </div>
+</div>
+
+
+<!-- Recipe List -->
+<div class="recipe-list-container" *ngIf="!loading; else loadingTemplate">
+  <div class="recipe-card" *ngFor="let recipe of filteredRecipes">
+    <p-card header="{{ recipe.title }}" subheader="{{ recipe.foodType }}">
+      <img *ngIf="recipe.image" [src]="recipe.image" alt="Recipe Image" width="100%" />
+      <p>{{ recipe.description | slice:0:150 }}...</p>
+
+      <!-- View Details Button -->
+      <button
+        pButton
+        type="button"
+        label="{{ 'VIEW_DETAILS' | translate }}"
+        icon="pi pi-search"
+        class="p-button-info p-button-sm mt-2"
+        (click)="viewDetails(recipe.id!)"
+      ></button><br>
+
+      <!-- Delete Button -->
+      <button
+        *ngIf="recipe.id"
+        pButton
+        type="button"
+        label="{{ 'DELETE' | translate }}"
+        icon="pi pi-trash"
+        class="p-button-danger p-button-sm mt-2"
+        (click)="deleteRecipe(recipe.id!)"
+      ></button>
+    
+
+    </p-card>
+  </div>
+</div>
+
+<ng-template #loadingTemplate>
+  <p>{{ 'LOADING' | translate }}...</p>
+</ng-template>

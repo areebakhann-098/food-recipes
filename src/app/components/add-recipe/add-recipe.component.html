@@ -1,0 +1,121 @@
+<!-- Toast container -->
+<p-toast position="top-right"></p-toast>
+
+<form
+  [formGroup]="recipeForm"
+  (ngSubmit)="onSubmit()"
+  class="max-w-2xl mx-auto p-6 bg-gray-100 rounded-lg shadow-md space-y-5"
+>
+  <h2 class="text-2xl font-bold text-center text-gray-800">
+    {{ 'ADD_RECIPE' | translate }}
+  </h2>
+
+  <!-- Food Type Dropdown -->
+  <div>
+    <p-dropdown
+      [options]="foodTypes"
+      formControlName="foodType"
+      [placeholder]="'SELECT_FOOD_TYPE' | translate"
+      optionValue="value"
+      optionLabel="label"
+      class="w-full"
+    >
+      <!-- render each item's label through |translate -->
+      <ng-template pTemplate="item" let-opt>
+        {{ opt.label | translate }}
+      </ng-template>
+      <ng-template pTemplate="selectedItem" let-opt>
+        {{ opt.label | translate }}
+      </ng-template>
+    </p-dropdown>
+    <small
+      *ngIf="recipeForm.get('foodType')?.invalid && recipeForm.get('foodType')?.touched"
+      class="text-red-600"
+    >
+      {{ 'SELECT_FOOD_TYPE' | translate }} {{ 'REQUIRED' | translate }}
+    </small>
+  </div>
+
+  <!-- Title -->
+  <div>
+    <input
+      pInputText
+      type="text"
+      formControlName="title"
+      placeholder="{{ 'TITLE' | translate }}"
+      class="w-full"
+    />
+    <small
+      *ngIf="recipeForm.get('title')?.invalid && recipeForm.get('title')?.touched"
+      class="text-red-600"
+    >
+      {{ 'TITLE' | translate }} {{ 'REQUIRED' | translate }}
+    </small>
+  </div>
+
+  <!-- Description -->
+  <div>
+    <textarea
+      pInputTextarea
+      rows="4"
+      formControlName="description"
+      placeholder="{{ 'DESCRIPTION' | translate }}"
+      class="w-full"
+    ></textarea>
+    <small
+      *ngIf="recipeForm.get('description')?.invalid && recipeForm.get('description')?.touched"
+      class="text-red-600"
+    >
+      {{ 'DESCRIPTION' | translate }} {{ 'REQUIRED' | translate }}
+    </small>
+  </div>
+
+  <!-- Ingredients -->
+  <div>
+    <textarea
+      pInputTextarea
+      rows="4"
+      formControlName="ingredients"
+      placeholder="{{ 'INGREDIENTS' | translate }}"
+      class="w-full"
+    ></textarea>
+    <small
+      *ngIf="recipeForm.get('ingredients')?.invalid && recipeForm.get('ingredients')?.touched"
+      class="text-red-600"
+    >
+      {{ 'INGREDIENTS' | translate }} {{ 'REQUIRED' | translate }}
+    </small>
+  </div>
+
+  <!-- Image Upload -->
+  <div class="flex items-center space-x-3">
+    <label
+      class="bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-2 rounded cursor-pointer flex items-center"
+    >
+      <i class="pi pi-upload mr-2"></i>
+      {{ 'CHOOSE_IMAGE' | translate }}
+      <input type="file" (change)="onFileSelected($event)" hidden />
+    </label>
+    <span class="text-sm text-gray-700">{{ imageName }}</span>
+  </div>
+  <small
+    *ngIf="recipeForm.get('image')?.invalid && recipeForm.get('image')?.touched"
+    class="text-red-600"
+  >
+    {{ 'CHOOSE_IMAGE' | translate }} {{ 'REQUIRED' | translate }}
+  </small>
+  <!-- Image Preview -->
+<div *ngIf="selectedImage" class="my-3">
+  <img [src]="selectedImage" alt="Preview" width="200" />
+</div>
+
+
+  <!-- Submit Button -->
+  <button
+    pButton
+    type="submit"
+    class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-semibold p-2 rounded-md"
+  >
+    {{ 'ADD_RECIPE' | translate }}
+  </button>
+</form>

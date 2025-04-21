@@ -1,0 +1,40 @@
+{
+    "BRAND": "Food Recipe",
+    "SEARCH": "Search recipes...",
+    "HOME": "Home",
+    "ABOUT": "About Us",
+    "RECIPES": "Recipes",
+    "ADD_RECIPE": "Add Recipe",
+    "LANGUAGE": "Language",
+    "ENGLISH": "English",
+    "URDU": "Urdu",
+    "SPANISH": "Spanish",
+      "ABOUT_US_TITLE": "About Delicious Food",
+      "ABOUT_US_SUBTITLE": "Bringing the world's flavors to your kitchen!",
+      "ABOUT_US_PARAGRAPH1": "Delicious Food is your go-to platform for exploring, cooking, and sharing mouthwatering recipes from all over the world.",
+      "ABOUT_US_PARAGRAPH2": "Our mission is to inspire home cooks and food lovers to create healthy, easy, and tasty meals right in their own kitchens.",
+      "ABOUT_US_PARAGRAPH3": "Whether you're a beginner or a pro, we have something for everyone. Join our community and start your cooking journey today!",
+      "ABOUT_US_PARAGRAPH4": "We believe food is more than just fuel – it's an experience. From comfort classics to exotic dishes, every recipe tells a story.",
+      "ABOUT_US_PARAGRAPH5": "Our platform is powered by passionate chefs, foodies, and creators who contribute recipes, tips, and cooking hacks every day.",
+      "ABOUT_US_PARAGRAPH6": "With user-friendly navigation, smart search, and language options, Delicious Food makes cooking fun and accessible for all.",
+      "ABOUT_US_PARAGRAPH7": "Thank you for being part of our flavorful journey. Let’s make every meal an adventure!",
+      
+        "SELECT_FOOD_TYPE":"Select Food Type",
+        "BREAKFAST":       "Breakfast",
+        "LUNCH":           "Lunch",
+        "DINNER":          "Dinner",
+        "SNACK":           "Snack",
+        "TITLE":           "Title",
+        "DESCRIPTION":     "Description",
+        "INGREDIENTS":     "Ingredients",
+        "CHOOSE_IMAGE":    "Choose Image",
+        "REQUIRED":        "is required",
+        "ERROR":           "Error",
+        "VALIDATION_ERROR":"Please fill out all required fields correctly",
+        "SUCCESS":         "Success",
+        "RECIPE_ADDED":    "Recipe added successfully!"
+      
+      
+    
+  }
+  

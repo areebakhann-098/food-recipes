@@ -6,22 +6,27 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class TranslationService {
   constructor(private translate: TranslateService) {
-    this.translate.setDefaultLang('en'); // Default language
+    this.translate.setDefaultLang('en');
     this.translate.use('en');
+    this.setDirection('en'); // set default direction
   }
 
-  // Function to change language
   translateText(lang: string) {
     this.translate.use(lang);
+    this.setDirection(lang);
   }
 
-  // Get current language
+  private setDirection(lang: string) {
+    const rtlLanguages = ['ur', 'ar', 'he'];
+    const direction = rtlLanguages.includes(lang) ? 'rtl' : 'ltr';
+    document.documentElement.setAttribute('dir', direction);
+  }
+
   get currentLang(): string {
     return this.translate.currentLang;
   }
 
-  // Available languages (for dropdowns etc)
   get availableLanguages(): string[] {
-    return ['en', 'ur', 'es'];  // Include Spanish as well
+    return ['en', 'ur', 'es'];
   }
 }

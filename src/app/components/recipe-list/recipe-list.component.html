@@ -31,19 +31,14 @@
 <!-- Recipe List -->
 <div class="recipe-list-container" *ngIf="!loading; else loadingTemplate">
   <div class="recipe-card" *ngFor="let recipe of filteredRecipes">
-    <p-card header="{{ recipe.title }}" subheader="{{ recipe.foodType }}">
+    <p-card
+      header="{{ recipe.title }}"
+      subheader="{{ recipe.foodType}}"
+      (click)="goToDetail(recipe.id!)"
+      styleClass="cursor-pointer hover:shadow-lg transition-shadow duration-300"
+    >
       <img *ngIf="recipe.image" [src]="recipe.image" alt="Recipe Image" width="100%" />
-      <p>{{ recipe.description | slice:0:150 }}...</p>
-
-      <!-- View Details Button -->
-      <button
-        pButton
-        type="button"
-        label="{{ 'VIEW_DETAILS' | translate }}"
-        icon="pi pi-search"
-        class="p-button-info p-button-sm mt-2"
-        (click)="viewDetails(recipe.id!)"
-      ></button><br>
+      <p>{{ recipe.description | slice: 0:150 }}...</p>
 
       <!-- Delete Button -->
       <button
@@ -53,10 +48,8 @@
         label="{{ 'DELETE' | translate }}"
         icon="pi pi-trash"
         class="p-button-danger p-button-sm mt-2"
-        (click)="deleteRecipe(recipe.id!)"
+        (click)="deleteRecipe(recipe.id!); $event.stopPropagation()"
       ></button>
-    
-
     </p-card>
   </div>
 </div>

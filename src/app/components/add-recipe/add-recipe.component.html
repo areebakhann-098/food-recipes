@@ -3,7 +3,7 @@
 
 <form
   [formGroup]="recipeForm"
-  (ngSubmit)="onSubmit()"
+  (ngSubmit)="submitRecipeForm()"
   class="max-w-2xl mx-auto p-6 bg-gray-100 rounded-lg shadow-md space-y-5"
 >
   <h2 class="text-2xl font-bold text-center text-gray-800">
@@ -13,23 +13,23 @@
   <!-- Food Type Dropdown -->
   <div>
     <p-dropdown
-      [options]="foodTypes"
-      formControlName="foodType"
-      [placeholder]="'SELECT_FOOD_TYPE' | translate"
-      optionValue="value"
-      optionLabel="label"
-      class="w-full"
-    >
-      <!-- render each item's label through |translate -->
-      <ng-template pTemplate="item" let-opt>
-        {{ opt.label | translate }}
-      </ng-template>
-      <ng-template pTemplate="selectedItem" let-opt>
-        {{ opt.label | translate }}
-      </ng-template>
-    </p-dropdown>
+  [options]="foodOptions"
+  formControlName="selectedCategory"
+  [placeholder]="'SELECT_FOOD_TYPE' | translate"
+  optionValue="name"
+  optionLabel="name"
+  class="w-full"
+>
+  <!-- render each item's label through |translate -->
+  <ng-template pTemplate="item" let-opt>
+    {{ opt.name | translate }}
+  </ng-template>
+  <ng-template pTemplate="selectedItem" let-opt>
+    {{ opt.name | translate }}
+  </ng-template>
+</p-dropdown>
     <small
-      *ngIf="recipeForm.get('foodType')?.invalid && recipeForm.get('foodType')?.touched"
+      *ngIf="recipeForm.get('selectedCategory')?.invalid && recipeForm.get('selectedCategory')?.touched"
       class="text-red-600"
     >
       {{ 'SELECT_FOOD_TYPE' | translate }} {{ 'REQUIRED' | translate }}
@@ -86,6 +86,23 @@
       {{ 'INGREDIENTS' | translate }} {{ 'REQUIRED' | translate }}
     </small>
   </div>
+  <!-- Recipes (steps/method) -->
+<div>
+  <textarea
+    pInputTextarea
+    rows="4"
+    formControlName="recipes"
+    placeholder="{{ 'RECIPES' | translate }}"
+    class="w-full"
+  ></textarea>
+  <small
+    *ngIf="recipeForm.get('recipes')?.invalid && recipeForm.get('recipes')?.touched"
+    class="text-red-600"
+  >
+    {{ 'RECIPES' | translate }} {{ 'REQUIRED' | translate }}
+  </small>
+</div>
+
 
   <!-- Image Upload -->
   <div class="flex items-center space-x-3">
@@ -94,7 +111,7 @@
     >
       <i class="pi pi-upload mr-2"></i>
       {{ 'CHOOSE_IMAGE' | translate }}
-      <input type="file" (change)="onFileSelected($event)" hidden />
+      <input type="file" (change)="handleImageSelect($event)" hidden />
     </label>
     <span class="text-sm text-gray-700">{{ imageName }}</span>
   </div>
@@ -104,11 +121,11 @@
   >
     {{ 'CHOOSE_IMAGE' | translate }} {{ 'REQUIRED' | translate }}
   </small>
-  <!-- Image Preview -->
-<div *ngIf="selectedImage" class="my-3">
-  <img [src]="selectedImage" alt="Preview" width="200" />
-</div>
 
+  <!-- Image Preview -->
+  <div *ngIf="selectedImage" class="my-3">
+    <img [src]="selectedImage" alt="Preview" width="200" />
+  </div>
 
   <!-- Submit Button -->
   <button

@@ -36,9 +36,7 @@ export class RecipeListComponent implements OnInit {
       });
   }
 
-  viewDetails(id: string): void {
-    this.router.navigate(['/recipe', id]);
-  }
+ 
   
 
   deleteRecipe(recipeId: string): void {
@@ -59,5 +57,9 @@ export class RecipeListComponent implements OnInit {
       recipe.description.toLowerCase().includes(query)
     );
   }
+  goToDetail(recipeId: string): void {
+    this.router.navigate(['/recipe', recipeId]);
+  }
+  
   
 }

@@ -18,8 +18,7 @@
       "ABOUT_US_PARAGRAPH5": "Our platform is powered by passionate chefs, foodies, and creators who contribute recipes, tips, and cooking hacks every day.",
       "ABOUT_US_PARAGRAPH6": "With user-friendly navigation, smart search, and language options, Delicious Food makes cooking fun and accessible for all.",
       "ABOUT_US_PARAGRAPH7": "Thank you for being part of our flavorful journey. Let’s make every meal an adventure!",
-      
-        "SELECT_FOOD_TYPE":"Select Food Type",
+      "SELECT_FOOD_TYPE":"Select Food Type",
         "BREAKFAST":       "Breakfast",
         "LUNCH":           "Lunch",
         "DINNER":          "Dinner",
@@ -32,9 +31,12 @@
         "ERROR":           "Error",
         "VALIDATION_ERROR":"Please fill out all required fields correctly",
         "SUCCESS":         "Success",
-        "RECIPE_ADDED":    "Recipe added successfully!"
-      
-      
-    
+        "RECIPE_ADDED":    "Recipe added successfully!",
+        "ABOUT_TITLE": "🍲Food Recipes",
+        "ABOUT_DESC": "Discover and share everyday cooking inspiration. Quick, tasty, and healthy meals for everyone.",
+        "QUICK_LINKS": "Quick Links",
+        "ABOUT_US": "About Us",
+        "FOLLOW_US": "Follow Us",
+        "COPYRIGHT": "© 2025 FoodRecipes. All rights reserved."    
   }
   

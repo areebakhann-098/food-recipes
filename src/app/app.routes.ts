@@ -21,11 +21,12 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./components/recipe-list/recipe-list.component').then(m => m.RecipeListComponent)
   },
-  // {
-  //   path: 'recipe/:id',
-  //   loadComponent: () =>
-  //     import('./components/recipe-detail/recipe-detail.component').then(m => m.RecipeDetailComponent)
-  // },
+  {
+    path: 'recipe/:id',
+    loadComponent: () =>
+      import('./components/recipe-detail/recipe-detail.component').then(m => m.RecipeDetailComponent)
+  },
+  
   
   {
     path: '**',

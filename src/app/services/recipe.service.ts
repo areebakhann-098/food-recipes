@@ -1,13 +1,9 @@
 import { Injectable, signal } from '@angular/core';
 import { environment } from '../../environment';
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import { getFirestore, collection, addDoc, getDocs, query, deleteDoc, doc, getDoc } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { Recipe } from '../models/recipe';
-import { getDocs } from 'firebase/firestore';
-import { query } from 'firebase/firestore';
-import { deleteDoc, doc } from 'firebase/firestore';
-
 
 @Injectable({
   providedIn: 'root',
@@ -31,39 +27,38 @@ export class FirebaseService {
   }
 
   async addRecipe(recipe: Recipe) {
+    
     try {
-      await addDoc(collection(this.db, 'recipes'), {
+      // Adding the recipe to Firestore
+      const docRef = await addDoc(collection(this.db, 'recipes'), {
+        
         title: recipe.title,
         description: recipe.description,
         foodType: recipe.foodType,
         ingredients: recipe.ingredients,
+        recipes: recipe.recipes, 
         image: recipe.image
       });
-
-      this.recipeAdded.set(true);
-      this.errorOccurred.set(null);
+  
+      // Get the document id directly from docRef.id
+      const recipeId = docRef.id;
+  
+      // Update the recipe object with the id (optional: if you want to store this locally)
+      recipe.id = recipeId;
+  
+      console.log(`Recipe added with ID: ${recipeId}`);
+  
+      this.recipeAdded.set(true);  // Recipe has been successfully added
+      this.errorOccurred.set(null);  // No error
     } catch (e) {
       console.error("Error adding recipe: ", e);
+  
+      // Update the signal to indicate an error
       this.recipeAdded.set(false);
       this.errorOccurred.set('Failed to add recipe to Firestore.');
     }
   }
 
-  async uploadImage(file: File): Promise<string> {
-    try {
-      const filePath = `recipe-images/${Date.now()}-${file.name}`;
-      const storageRef = ref(this.storage, filePath);
-
-      // Upload the image
-      await uploadBytes(storageRef, file);
-
-      // Get the download URL
-      return await getDownloadURL(storageRef);
-    } catch (error) {
-      console.error('Image upload error:', error);
-      throw new Error('Image upload failed');
-    }
-  }
   async getAllRecipes(): Promise<Recipe[]> {
     try {
       const snapshot = await getDocs(query(collection(this.db, 'recipes')));
@@ -71,13 +66,14 @@ export class FirebaseService {
         id: doc.id,
         ...doc.data()
       })) as Recipe[];
-  
+
       return recipes;
     } catch (error) {
       console.error('Error fetching recipes:', error);
       throw new Error('Failed to fetch recipes');
     }
   }
+
   async deleteRecipe(recipeId: string): Promise<void> {
     try {
       await deleteDoc(doc(this.db, 'recipes', recipeId));
@@ -87,6 +83,23 @@ export class FirebaseService {
       throw new Error('Failed to delete recipe');
     }
   }
-   
-  
+
+  async getRecipeById(id: string): Promise<Recipe | undefined> {
+    try {
+      const recipeDoc = doc(this.db, 'recipes', id);
+      const recipeSnap = await getDoc(recipeDoc);
+
+      if (recipeSnap.exists()) {
+        return {
+          id: recipeSnap.id,
+          ...(recipeSnap.data() as Recipe)
+        };
+      } else {
+        return undefined;
+      }
+    } catch (error) {
+      console.error('Error fetching recipe by ID:', error);
+      throw new Error('Failed to fetch recipe');
+    }
+  }
 }

@@ -11,11 +11,12 @@ import { CarouselModule } from 'primeng/carousel';
 })
 export class ImageSliderComponent {
   images = [
- 
-    { url: 'banner.png', title: 'By Delicious Food' },
-    { url: 'banner 1.png', title: 'By Delicious Food' },
-    { url: 'banner4.jpg', title: 'By Delicious Food' }
-
-
+    { url: 'banner2.PNG', title: 'Lets Cook Something Yummy' },
+    { url: 'banner.png', title: 'Cooking is Love Made Visible' },
+    { url: 'banner 1.png', title: 'By Food Recipes' },
+    { url: 'about.jpg', title: 'Good Food Good Mood' },
+    { url: 'banner3.jpg', title: 'The Best Memories Are Made Around The Table' },
+    { url: 'banner5.jpg', title: 'Where there is food there is love' },
+   
   ];
 }

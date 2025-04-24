@@ -41,7 +41,7 @@
       <p>{{ recipe.description | slice: 0:150 }}...</p>
 
       <!-- Delete Button -->
-      <button
+      <!-- <button
         *ngIf="recipe.id"
         pButton
         type="button"
@@ -49,7 +49,7 @@
         icon="pi pi-trash"
         class="p-button-danger p-button-sm mt-2"
         (click)="deleteRecipe(recipe.id!); $event.stopPropagation()"
-      ></button>
+      ></button> -->
     </p-card>
   </div>
 </div>

@@ -39,16 +39,16 @@ export class RecipeListComponent implements OnInit {
  
   
 
-  deleteRecipe(recipeId: string): void {
-    this.firebaseService.deleteRecipe(recipeId)
-      .then(() => {
-        this.recipes = this.recipes.filter(r => r.id !== recipeId);
-        this.filterRecipes();
-      })
-      .catch(err => {
-        console.error('🔥 Error deleting recipe:', err);
-      });
-  }
+  // deleteRecipe(recipeId: string): void {
+  //   this.firebaseService.deleteRecipe(recipeId)
+  //     .then(() => {
+  //       this.recipes = this.recipes.filter(r => r.id !== recipeId);
+  //       this.filterRecipes();
+  //     })
+  //     .catch(err => {
+  //       console.error('🔥 Error deleting recipe:', err);
+  //     });
+  // }
 
   filterRecipes(): void {
     const query = this.searchQuery.toLowerCase();
